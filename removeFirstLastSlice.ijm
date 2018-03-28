@@ -32,10 +32,10 @@ run("Bio-Formats Importer", "open="+directorySource+name+" color_mode=Default vi
 imageSourceID = getImageID;
 name=getTitle;
 Stack.getDimensions(widthSource, heightSource, channelsSource, slicesSource, framesSource);
-print(slicesSource)
+
 //Create output directory
 outputPath=directorySource+"\\Output";
-print(outputPath)
+
 if (!File.exists(outputPath)) File.makeDirectory(outputPath);
 		
 //Generate ImageList with images that have an extension that is accepted
