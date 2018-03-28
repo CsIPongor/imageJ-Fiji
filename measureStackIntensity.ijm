@@ -108,7 +108,7 @@ function stackIntensity(imageSourceID, choice_ch, timeframe) {
         	}
         
        	numberOfResults = nResults;
-       	intensity=0;
+       	intensity=0.0;//Must be 0.0 otherwise the values will be converted to int and rounded
        	for(i=0;i<numberOfResults;i++)
        	{
 		 intensity = intensity+getResult("RawIntDen", i);	
