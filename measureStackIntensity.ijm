@@ -17,6 +17,9 @@ stackOrder="XYCZT"
 channelNo=1
 timeframe=0
 
+//Clear Log 
+print("\\Clear");
+
 //Get image properties
 imageSourceID = getImageID;
 name=getTitle;
@@ -75,7 +78,7 @@ for (n = 0; n < imageList.length; n++) {
 	nameSourceWithoutExtension=removeFileExtension(nameSource, extensions);
 
 	
-	intensity=stackIntensity(imageSourceID, channelNo, timeframe); 
+	intensity=stackIntensity2(imageSourceID, channelNo, timeframe); 
 	print("Intensity in "+nameSource+" channel: "+channelNo+" timeFrame "+timeframe+" is "+intensity);
 	//Close image
 	selectImage(imageSourceID);
@@ -100,7 +103,7 @@ function stackIntensity(imageSourceID, choice_ch, timeframe) {
     		selectImage(imageSourceID);
         	Stack.setPosition(choice_ch,z,timeframe);
         	run("Select All");
-			run("Set Measurements...", "integrated redirect=None decimal=3");
+			run("Set Measurements...", "integrated redirect=None decimal=10");
 			run("Measure");
         	}
         
@@ -114,7 +117,25 @@ function stackIntensity(imageSourceID, choice_ch, timeframe) {
         return intensity;
  	}
 
+function stackIntensity2(imageSourceID, choice_ch, timeframe) {
+		
+		run("Clear Results");
+		
+		selectImage(imageSourceID);
+		name=getTitle;
 
+		run("Z Project...", "projection=[Sum Slices]");
+		run("Select All");
+		run("Set Measurements...", "integrated redirect=None decimal=10");
+		run("Measure");
+        
+     
+		intensity = getResult("RawIntDen", 0);	
+
+		selectWindow("SUM_"+name);
+		run("Close");
+        return intensity;
+ 	}
 
 function isImage(filename, extensions) {
 	//Checks if file has an extension in the list named "extensions" (lsit of extensions without point)
