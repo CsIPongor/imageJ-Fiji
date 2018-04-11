@@ -35,8 +35,6 @@ imageSourceID = getImageID;
 name=getTitle;
 Stack.getDimensions(widthSource, heightSource, channelsSource, slicesSource, framesSource);
 
-//Create output directory
-outputPath=directorySource+"\\Output";
 
 if (!File.exists(outputPath)) File.makeDirectory(outputPath);
 		
