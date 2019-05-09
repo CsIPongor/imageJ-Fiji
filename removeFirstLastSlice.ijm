@@ -36,7 +36,7 @@ Stack.getDimensions(widthSource, heightSource, channelsSource, slicesSource, fra
 //Create output directory
 outputPath=directorySource+"\\Output";
 
-if (!File.exists(outputPath)) File.makeDirectory(outputPath);
+//if (!File.exists(outputPath)) File.makeDirectory(outputPath);
 		
 //Generate ImageList with images that have an extension that is accepted
 imageList = newArray(0);	
